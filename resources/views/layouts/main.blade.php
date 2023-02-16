@@ -10,12 +10,12 @@
 </head>
 
 <body>
-    @include('parsials.navbar');
+    @include('parsials.navbar')
     <div class="container mt-4">
         @yield('container')
         <!--container ini berisi halaman yang ada pada halaman2 child -->
     </div>
-    @include('parsials.footer');
+    @include('parsials.footer')
 </body>
 
 </html>

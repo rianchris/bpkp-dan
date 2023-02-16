@@ -4,5 +4,5 @@
     <p>Nama : {{ $name }}</p>
     <p>Email : {{ $email }}</p>
     <p>Umur : {{ $umur }}</p>
-    <img src="img/{{ $foto }}" alt="" width="300">
+    <img src="img/{{ $foto }}" alt="" width="200" height="200" class="img-thumbnail rounded-circle">
 @endsection
