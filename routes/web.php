@@ -43,9 +43,16 @@ Route::get('/blog', [PostController::class, 'index']);
 //halaman single blog
 Route::get('/blog/{post:slug}', [PostController::class, 'show']);
 
+Route::get('/categories', function () {
+    return view('category', [
+        'title' => 'Post Categories',
+        'categories' => Category::all()
+    ]);
+});
+
 
 Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('category', [
+    return view('categories', [
         'title' => $category->name,
         'blog' => $category->post,
         'category' => $category->name
