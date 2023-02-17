@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post; //klik kanan -> import all clasees = untuk menggunakan model yang belum terhubung
 use App\Models\Category;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,5 +57,12 @@ Route::get('/categories/{category:slug}', function (Category $category) {
         'title' => $category->name,
         'blog' => $category->post,
         'category' => $category->name
+    ]);
+});
+
+Route::get('/author/{author:username}', function (User $author) {
+    return view('blog', [
+        'title' => 'User Post',
+        'blog' => $author->posts
     ]);
 });

@@ -11,7 +11,8 @@ class PostController extends Controller
     {
         return view('blog', [
             "title" => "Blog",
-            "blog" => Post::all()
+            // "blog" => Post::all() // untuk menampilkan semua post
+            "blog" => Post::latest()->get() // untuk menampilkan semua post berdasarkan tanggal terbaru
         ]);
     }
     public function show(Post $post)

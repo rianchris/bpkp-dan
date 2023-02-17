@@ -17,8 +17,8 @@ class Post extends Model
         return $this->belongsTo(Category::class); //1 post memiliki 1 kategori
     }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id'); //mengaliaskan foreign key user id menjadi author
     }
 }
