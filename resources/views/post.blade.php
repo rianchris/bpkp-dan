@@ -3,9 +3,10 @@
 @section('container')
     <h1>{{ $post->title }}</h1>
 
-    <p>By Rian Chris in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></p>
+    <p> By <a href="#" class="text-decoration-none">{{ $post->user->name }} </a> in <a
+            href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p>
 
     {{-- untuk menghindari escape character tag html sperti <p> <b> --}}
     {!! $post->body !!}
-    <a href="/blog">Back to blog</a>
+    <a href="/blog" class="text-decoration-none">Back to blog</a>
 @endsection
