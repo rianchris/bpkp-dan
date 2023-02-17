@@ -14,11 +14,11 @@ class PostController extends Controller
             "blog" => Post::all()
         ]);
     }
-    public function show($id)
+    public function show(Post $post)
     {
         return view('post', [
             "title" => "Blog",
-            "post" => Post::find($id)
+            "post" => $post
         ]);
     }
 }

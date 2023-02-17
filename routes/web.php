@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post; //klik kanan -> import all clasees = untuk menggunakan model yang belum terhubung
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,13 @@ Route::get('profile', function () {
 
 Route::get('/blog', [PostController::class, 'index']);
 //halaman single blog
-Route::get('/blog/{post}', [PostController::class, 'show']);
+Route::get('/blog/{post:slug}', [PostController::class, 'show']);
+
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('category', [
+        'title' => $category->name,
+        'blog' => $category->post,
+        'category' => $category->name
+    ]);
+});
