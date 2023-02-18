@@ -51,18 +51,16 @@ Route::get('/categories', function () {
     ]);
 });
 
-
 Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('categories', [
-        'title' => $category->name,
-        'blog' => $category->post,
-        'category' => $category->name
+    return view('blog', [
+        'page_title' => "Post By Caregory : $category->name",
+        'blog' => $category->post->load('category', 'author')
     ]);
 });
 
 Route::get('/author/{author:username}', function (User $author) {
     return view('blog', [
-        'title' => 'User Post',
-        'blog' => $author->posts
+        'page_title' => "Post By Author : $author->name",
+        'blog' => $author->posts->load('category', 'author') //untuk mengatasi masalah n+1, lazy eager load untuk route di web.php
     ]);
 });

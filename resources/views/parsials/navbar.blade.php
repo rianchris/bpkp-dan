@@ -8,16 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ $title === 'Home' ? 'active' : '' }}" href="/">Home</a>
+                    <a class="nav-link {{ $page_title === 'Home' ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title === 'Profile' ? 'active' : '' }}" href="/profile">Profile</a>
+                    <a class="nav-link {{ $page_title === 'Profile' ? 'active' : '' }}" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title === 'Hubungi Kami' ? 'active' : '' }}" href="/hubungi">Hubungi</a>
+                    <a class="nav-link {{ $page_title === 'Hubungi Kami' ? 'active' : '' }}" href="/hubungi">Hubungi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title === 'Blog' ? 'active' : '' }}" href="/blog">Blog</a>
+                    <a class="nav-link {{ $page_title === 'Blog' ? 'active' : '' }}" href="/blog">Blog</a>
                 </li>
             </ul>
         </div>
