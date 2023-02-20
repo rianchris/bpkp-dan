@@ -39,7 +39,13 @@ class DatabaseSeeder extends Seeder
             'slug' => 'android-programming'
         ]);
 
-        Post::factory(15)->create(); // untuk memasukkan data dummy kedalam tabel user
+        Category::create([
+            'name' => 'Microsoft Programming',
+            'slug' => 'Microsoft-programming'
+        ]);
+
+
+        Post::factory(20)->create(); // untuk memasukkan data dummy kedalam tabel user
         //     Post::create([
         //         'title' => 'Judul Pertama',
         //         'slug' => 'judul-pertama',

@@ -19,25 +19,30 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
-    ]);
-});
-
-Route::get('hubungi', function () {
-    return view('hubungi', [
-        "title" => "Hubungi Kami"
+        "navbar_active" => "home",
+        "page_title" => "Home"
     ]);
 });
 
 Route::get('profile', function () {
     return view('profile', [
-        "title" => "Profile",
+        "navbar_active" => "profile",
+        "page_title" => "Profile",
         "name" => "Rian Chris",
         "email" => "chrissesario.rian@gmail.com",
         "umur" => 23,
         "foto" => "pas foto.png"
     ]); //mengirim data ke view profile melalui routes menggunakan array associative
 });
+
+Route::get('hubungi', function () {
+    return view('hubungi', [
+        "navbar_active" => "hubungi",
+        "page_title" => "Hubungi Kami"
+    ]);
+});
+
+
 
 
 Route::get('/blog', [PostController::class, 'index']);
@@ -46,13 +51,15 @@ Route::get('/blog/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
     return view('category', [
-        'title' => 'Post Categories',
+        'navbar_active' => 'categories',
+        'page_title' => 'categories',
         'categories' => Category::all()
     ]);
 });
 
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('blog', [
+        'navbar_active' => 'categories',
         'page_title' => "Post By Caregory : $category->name",
         'blog' => $category->post->load('category', 'author')
     ]);
@@ -60,6 +67,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 
 Route::get('/author/{author:username}', function (User $author) {
     return view('blog', [
+        'navbar_active' => 'post',
         'page_title' => "Post By Author : $author->name",
         'blog' => $author->posts->load('category', 'author') //untuk mengatasi masalah n+1, lazy eager load untuk route di web.php
     ]);
