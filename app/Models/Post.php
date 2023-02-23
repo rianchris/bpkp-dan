@@ -19,6 +19,14 @@ class Post extends Model
         return Str::limit($this->excerpt, Post::LIMIT);
     }
 
+    public function scopeFilter($query,  $filters)
+    {
+        if (isset($filters['search']) ? $filters['search'] : false) {
+            return $query->where('title', 'like', '%' . $filters['search'] . '%') //pencarian judul
+                ->orWhere('body', 'like', '%' . $filters['search'] . '%'); //pencarian text pada body
+        }
+    }
+
     //untuk menghubungkan ke tabel categories
     public function category()
     {

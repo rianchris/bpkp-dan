@@ -1,11 +1,3 @@
-<nav class="navbar navbar-expand-sm navbar-white">
-    <div class="container">
-        <a href="" class="text-decoration-none">Contact Us</a>
-    </div>
-</nav>
-
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
     <div class="container">
         <a class="navbar-brand" href="/">BPKP</a>

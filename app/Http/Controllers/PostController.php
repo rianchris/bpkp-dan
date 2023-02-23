@@ -9,11 +9,13 @@ class PostController extends Controller
 {
     public function index()
     {
+        // untuk menampilkan semua post berdasarkan tanggal terbaru
+
         return view('blog', [
             "navbar_active" => "post",
             "page_title" => "All Post",
             // "blog" => Post::all() // untuk menampilkan semua post
-            "blog" => Post::latest()->get() // untuk menampilkan semua post berdasarkan tanggal terbaru
+            "blog" => Post::latest()->filter(request('search'))->get()
         ]);
     }
     public function show(Post $post)

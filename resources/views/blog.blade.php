@@ -1,9 +1,20 @@
 @extends('layouts.main')
 @section('container')
-    <h1 class="col-10 mx-auto mb-3">{{ $page_title }}</h1>
+    <h1 class="col-12 mx-auto mb-3 text-center">{{ $page_title }}</h1>
     {{-- untuk memeriksa apakah halaman yang dicari ada isinya --}}
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-6">
+            <form action="/blog">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search.." name="search"
+                        value="{{ request('search') }}">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="col-12 mx-auto">
             @if ($blog->count())
                 <div class="card mb-3 shadow p-4 mb-4 bg-white">
                     <img src="https://source.unsplash.com/1200x400/?{{ $blog[0]->category->name }}" class="card-img-top"
@@ -29,7 +40,7 @@
 
                 <div class="row justify-content-center ">
                     @foreach ($blog->skip(1) as $blog)
-                        <div class="col-12 col-lg-8 p-2 border-primary">
+                        <div class="col-12 col-lg-10 p-1 border-primary">
                             <div class="row g-0 border-bottom pb-2">
                                 <div class="col-5 p-2">
                                     <small>
