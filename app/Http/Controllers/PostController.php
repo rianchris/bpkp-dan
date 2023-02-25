@@ -11,11 +11,11 @@ class PostController extends Controller
     {
         // untuk menampilkan semua post berdasarkan tanggal terbaru
 
-        return view('blog', [
+        return view('posts', [
             "navbar_active" => "post",
             "page_title" => "All Post",
             // "blog" => Post::all() // untuk menampilkan semua post
-            "blog" => Post::latest()->filter(request('search'))->get()
+            "blog" => Post::latest()->filter(request(['search', 'category']))->get()
         ]);
     }
     public function show(Post $post)

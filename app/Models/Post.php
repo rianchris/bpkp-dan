@@ -19,12 +19,23 @@ class Post extends Model
         return Str::limit($this->excerpt, Post::LIMIT);
     }
 
-    public function scopeFilter($query,  $filters)
+    public function scopeFilter($query, array $filters)
     {
-        if (isset($filters['search']) ? $filters['search'] : false) {
-            return $query->where('title', 'like', '%' . $filters['search'] . '%') //pencarian judul
-                ->orWhere('body', 'like', '%' . $filters['search'] . '%'); //pencarian text pada body
-        }
+        // if (isset($filters['search']) ? $filters['search'] : false) {
+        //     return $query->where('title', 'like', '%' . $filters['search'] . '%') //pencarian judul
+        //         ->orWhere('body', 'like', '%' . $filters['search'] . '%'); //pencarian text pada body
+        // }
+
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%') //pencarian judul
+                ->orWhere('body', 'like', '%' . $search . '%'); //pencarian text pada body  
+        });
+
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            return $query->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
     }
 
     //untuk menghubungkan ke tabel categories

@@ -15,4 +15,8 @@ class Category extends Model
     {
         return $this->hasMany(Post::class); //kategori menampilkan banyak post
     }
+    public function news()
+    {
+        return $this->hasMany(News::class); //kategori menampilkan banyak post
+    }
 }

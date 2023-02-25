@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\Models\News;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
+use App\Models\Publikasi;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,22 +32,24 @@ class DatabaseSeeder extends Seeder
         // ]);
         User::factory(3)->create(); // untuk memasukkan data dummy kedalam tabel user
         Category::create([
-            'name' => 'Web Programming',
-            'slug' => 'web-programming'
+            'name' => 'Event',
+            'slug' => 'event'
         ]);
 
         Category::create([
-            'name' => 'Android Programming',
-            'slug' => 'android-programming'
+            'name' => 'Gallery',
+            'slug' => 'gallery'
         ]);
 
         Category::create([
-            'name' => 'Microsoft Programming',
-            'slug' => 'Microsoft-programming'
+            'name' => 'Student Opportunities',
+            'slug' => 'student-opportunities'
         ]);
 
 
         Post::factory(20)->create(); // untuk memasukkan data dummy kedalam tabel user
+        News::factory(20)->create();
+        Publikasi::factory(15)->create();
         //     Post::create([
         //         'title' => 'Judul Pertama',
         //         'slug' => 'judul-pertama',
