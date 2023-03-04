@@ -19,6 +19,7 @@ class CreateNewsTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->string('slug')->unique(); //harus unik karena akan menjadi url
+            $table->string('image')->nullable();
             $table->text('excerpt');
             $table->text('body');
             $table->timestamp('published_at')->nullable();

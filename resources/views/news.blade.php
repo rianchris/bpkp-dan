@@ -6,8 +6,7 @@
         <div class="col-md-6">
             <form action="/blog">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search.." name="search"
-                        value="{{ request('search') }}">
+                    <input type="text" class="form-control" placeholder="Search.." name="search" value="{{ request('search') }}">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </div>
             </form>
@@ -21,21 +20,24 @@
             <div class="section-title">
                 <h2>News</h2>
             </div>
-            @if ($blog->count())
+            @if ($news->count())
                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
-                    @foreach ($blog as $blog)
+                    @foreach ($news as $news)
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                             <div class="course-item mb-3">
-                                <img src="{{ asset('assets/img/course-1.jpg') }}" class="img-fluid" alt="...">
+                                @if ($news->image)
+                                    <img src="/storage/{{ $news->image }}" class="img-fluid" alt="...">
+                                @else
+                                    <img src="/storage/news-image/no-image.png" class="img-fluid" alt="...">
+                                @endif
                                 <div class="course-content">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h4>{{ $blog->category->name }}</h4>
-                                        <p class="price">$169</p>
+                                        <h4>{{ $news->category->name }}</h4>
                                     </div>
 
-                                    <h3><a href="course-details.html">{{ $blog->title }}</a></h3>
-                                    <p>{{ $blog->excerpt }}</p>
+                                    <h3><a href="news/{{ $news->slug }}">{{ $news->title }}</a></h3>
+                                    <p>{{ $news->excerpt }}</p>
 
                                 </div>
                             </div>

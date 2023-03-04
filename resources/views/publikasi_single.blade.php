@@ -25,7 +25,7 @@
                         </tr>
                         <tr>
                             <td>Download PDF</td>
-                            <td>{{ $publikasi->file }}</td>
+                            <td><a href="/storage/{{ $publikasi->file }}" target="blank">Link</a></td>
                         </tr>
                     </tbody>
                 </table>

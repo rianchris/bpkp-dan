@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use illuminate\Support\Str;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class News extends Model
 {
+    use Sluggable;
     use HasFactory;
     // protected $fillable = ['title', 'excerpt', 'body']; //untuk memasukkan data dengan metode mass asignment, kelemahannya jika ada tambahan kolom maka harus ditambah lagi kedalam $fillable, bisa gunakan $guarded supaya otomatis tanpa harus menambah lagi
     protected $guarded = ['id']; //artinya semua  data mass asignment bisa masuk kecuali data id
@@ -21,10 +23,6 @@ class News extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        // if (isset($filters['search']) ? $filters['search'] : false) {
-        //     return $query->where('title', 'like', '%' . $filters['search'] . '%') //pencarian judul
-        //         ->orWhere('body', 'like', '%' . $filters['search'] . '%'); //pencarian text pada body
-        // }
 
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%') //pencarian judul
@@ -37,8 +35,6 @@ class News extends Model
             });
         });
     }
-
-    //untuk menghubungkan ke tabel categories
     public function category()
     {
         return $this->belongsTo(Category::class); //1 post memiliki 1 kategori
@@ -47,5 +43,19 @@ class News extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id'); //mengaliaskan foreign key user id menjadi author
+    }
+
+    public function getRouteKeyName() //agar route dashboard/news/slug bisa dibuatkan model bindingnya
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array //untuk membuat otomatis title menjadi slug
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }

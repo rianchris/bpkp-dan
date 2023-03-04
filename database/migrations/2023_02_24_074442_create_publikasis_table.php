@@ -15,12 +15,14 @@ class CreatePublikasisTable extends Migration
     {
         Schema::create('publikasis', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->foreignId('user_id');
-            $table->string('publisher');
+            $table->string('title');
             $table->string('slug')->unique(); //harus unik karena akan menjadi url
+            $table->string('publisher');
+            $table->string('file')->nullable();
+            $table->string('extension')->nullable();
+            $table->integer('size')->nullable();
             $table->timestamp('published_at')->nullable();
-            $table->string('file');
             $table->timestamps();
         });
     }
