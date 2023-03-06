@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-12 mt-5 pd-4">
 
-                <h1>Daftar Publikasi</h1>
+                <h1 class="text-secondary fw-semibold">Daftar Publikasi</h1>
+                <hr>
                 <table class="table ">
                     <thead>
                         <tr>

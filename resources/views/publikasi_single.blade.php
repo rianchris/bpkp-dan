@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-start">
             <div class="col-lg-12 mt-5">
-                <h1>Publikasi</h1>
+                <h1 class="text-seconary">Publikasi</h1>
                 <table class="table">
                     <tbody>
                         <tr>

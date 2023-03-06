@@ -52,13 +52,23 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="kontak" class="form-label">Kontak</label>
-                                <input type="text" class="form-control" id="kontak" name="kontak" autofocus required value="{{ old('kontak') }}">
+                                <label for="kontak" class="form-label">Kontak WA</label>
+                                <input type="number" class="form-control" id="kontak" name="kontak" autofocus required value="{{ old('kontak') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="partner" class="form-label">Partner</label>
                                 <input type="text" class="form-control" id="partner" name="partner" autofocus required value="{{ old('partner') }}">
                             </div>
+
+                            <div class="mb-3 bg-gray-300 py-2 px-3 rounded-2">
+                                <label for="start" class="form-label">Tanggal Mulai : </label>
+                                <input type="date" class="rounded-1 px-2" id="start" name="tanggal_mulai" value="2023-03-04" min="2020-12-31" max="2030-12-31">
+                            </div>
+                            <div class="mb-3 bg-gray-300 py-2 px-3 rounded-2">
+                                <label for="start" class=form-label>Tanggal Selesai : </label>
+                                <input type="date" class="rounded-1 px-2" id="start" name="tanggal_selesai" value="2023-03-04" min="2020-12-31" max="2030-12-31">
+                            </div>
+
                             <div class="mb-3">
                                 <label for="image" class="form-label">Upload Image</label>
                                 <img class="img-preview img-fluid mb-3 col-sm-5">

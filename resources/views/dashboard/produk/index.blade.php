@@ -9,16 +9,13 @@
                         <div class="row align-items-center">
                             <div class="col-md-6 col-6 mb-3 mb-md-0">
                                 <!-- Title -->
-                                <h1 class="h2 mb-0 ls-tight">All News</h1>
+                                <h1 class="h2 mb-0 ls-tight">All Produk</h1>
                             </div>
                             <!-- Actions -->
                             <div class="col-md-6 col-6 text-md-end  d-flex justify-content-end">
                                 <div class="mx-n1">
-                                    <a href="/dashboard/news/create" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                                        <span class="pe-2">
-                                            <i class="bi bi-plus"></i>
-                                        </span>
-                                        <span>Create</span>
+                                    <a href="/dashboard/produk/create" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                        <span class="pe-2"><i class="bi bi-plus"></i></span> <span>Create</span>
                                     </a>
                                 </div>
                             </div>
@@ -44,51 +41,27 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Author</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Published at</th>
+                                    <th scope="col">Member</th>
                                     <th scope="col">Action</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($news as $news)
+                                @foreach ($produk as $produk)
                                     <tr>
+                                        <td> {{ $loop->iteration }} </td>
+                                        <td> <a class="text-heading font-semibold" href="#"> {{ Str::limit($produk->title, 100) }} </a></td>
+                                        <td> <a class="text-heading font-semibold" href="#"> {{ $produk->author->name }} </td>
+                                        <td> <a class="text-heading font-semibold" href="#"> {{ $produk->member }} </td>
                                         <td>
-                                            {{ $loop->iteration }}
-                                        </td>
-                                        <td>
-                                            <a class="text-heading font-semibold" href="#">
-                                                {{ Str::limit($news->title, 100) }}
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="text-heading font-semibold" href="#">
-                                                {{ $news->author->name }}
-
-                                        </td>
-                                        <td>
-                                            <a class="text-heading font-semibold" href="#">
-                                                {{ $news->category->name }}
-                                            </a>
-                                        </td>
-                                        <td>
-                                            {{ $news->created_at }}
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="/dashboard/news/{{ $news->slug }}"
-                                                class="btn btn-sm btn-neutral">View</a>
-                                            <a type="button" href="/dashboard/news/{{ $news->slug }}/edit"
-                                                class="btn btn-sm btn-square btn-neutral text-warning-hover">
+                                            <a href="/dashboard/produk/{{ $produk->slug }}" class="btn btn-sm btn-neutral">View</a>
+                                            <a type="button" href="/dashboard/produk/{{ $produk->slug }}/edit" class="btn btn-sm btn-square btn-neutral text-warning-hover">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-
-                                            <form action="/dashboard/news/{{ $news->slug }}" method="post"
-                                                class="d-inline">
+                                            <form action="/dashboard/produk/{{ $produk->slug }}" method="post" class="d-inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                                    onclick="return confirm('Are you sure?')">
+                                                <button type="submit" class="btn btn-sm btn-square btn-neutral text-danger-hover" onclick="return confirm('Are you sure?')">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>

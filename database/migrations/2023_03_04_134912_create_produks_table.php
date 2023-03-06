@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsTable extends Migration
+class CreateProduksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('produks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id');
             $table->foreignId('user_id');
             $table->string('title');
             $table->string('slug')->unique(); //harus unik karena akan menjadi url
+            $table->string('member')->nullable();
+            $table->string('deskripsi');
             $table->string('image')->nullable();
-            $table->text('excerpt');
-            $table->text('body');
-            $table->boolean('is_carousel')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

@@ -9,26 +9,16 @@
 
              <nav id="navbar" class="navbar order-last order-lg-0">
                  <ul>
-                     <li><a class="{{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
-                     </li>
-                     <li><a class="{{ Request::is('/publikasi*') ? 'active' : '' }}" href="/publikasi">Publikasi</a>
-                     </li>
-                     <li><a class="{{ Request::is('/projek*') ? 'active' : '' }}" href="/projek">Projek</a>
-                     </li>
-                     <li><a class="{{ Request::is('/produk*') ? 'active' : '' }}" href="/produk">Produk</a>
-                     </li>
+                     <li><a class="{{ Request::is('/') ? 'active' : '' }}" href="/">Home</a></li>
+                     <li><a class="{{ Request::is('publikasi*') ? 'active' : '' }}" href="/publikasi">Publikasi</a></li>
+                     <li><a class="{{ Request::is('projek*') ? 'active' : '' }}" href="/projek">Projek</a></li>
+                     <li><a class="{{ Request::is('produk*') ? 'active' : '' }}" href="/produk">Produk</a></li>
 
-                     <li class="dropdown"><a href="/news"><span>News</span> <i class="bi bi-chevron-down"></i></a>
+                     <li class="dropdown"><a class="{{ Request::is('news*') ? 'active' : '' }}" href="/news"><span>News</span> <i class="bi bi-chevron-down"></i></a>
                          <ul>
-                             <li><a class="{{ Request::is('/news*') ? 'active' : '' }}"
-                                     href="/news?category=event">Event</a>
-                             </li>
-                             <li><a class="{{ Request::is('/produk*') ? 'active' : '' }} }}"
-                                     href="/news?category=gallery">Gallery</a>
-                             </li>
-                             <li><a class="{{ Request::is('/produk*') ? 'active' : '' }}"
-                                     href="/news?category=student-opportunities">Student
-                                     Opportunities</a></li>
+                             <li><a href="/news?category=event">Event</a></li>
+                             <li><a href="/news?category=gallery">Gallery</a></li>
+                             <li><a href="/news?category=student-opportunities">Student Opportunities</a></li>
                          </ul>
                      </li>
                  </ul>

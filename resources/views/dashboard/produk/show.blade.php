@@ -9,16 +9,14 @@
                         <div class="row align-items-center">
                             <div class="col-md-12 col-12 mb-3 mb-md-0">
                                 <!-- Title -->
-                                <a href="/dashboard/news/{{ $news->slug }}/edit" type="button"
-                                    class="btn btn-sm btn-neutral text-warning-hover">
+                                <a href="/dashboard/news/{{ $news->slug }}/edit" type="button" class="btn btn-sm btn-neutral text-warning-hover">
                                     <i class="bi bi-pencil"></i> Edit
                                 </a>
 
                                 <form action="/dashboard/news/{{ $news->slug }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-neutral text-danger-hover"
-                                        onclick="return confirm('Are you sure?')">
+                                    <button type="submit" class="btn btn-sm btn-neutral text-danger-hover" onclick="return confirm('Are you sure?')">
                                         <i class="bi bi-trash"></i> Delete
                                     </button>
                                 </form>
@@ -47,7 +45,7 @@
                     <p>{!! $news->body !!}</p>
                 </div>
                 <a href="/dashboard/news" class="btn btn-sm btn-secondary"><i class="bi bi-arrow-left"></i> Back to All
-                    News</a>
+                    Projek</a>
             </div>
         </main>
 

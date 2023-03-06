@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Publikasi;
 use App\Models\Projek;
+use App\Models\Produk;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -56,5 +57,6 @@ class DatabaseSeeder extends Seeder
         News::factory(20)->create();
         Projek::factory(20)->create();
         Publikasi::factory(15)->create();
+        Produk::factory(10)->create();
     }
 }

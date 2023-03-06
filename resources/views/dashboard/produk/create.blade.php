@@ -9,7 +9,7 @@
                         <div class="row align-items-center">
                             <div class="col-md-6 col-6 mb-3 mb-md-0">
                                 <!-- Title -->
-                                <h1 class="h2 mb-0 ls-tight">Create News</h1>
+                                <h1 class="h2 mb-0 ls-tight">Create Produk</h1>
                             </div>
                         </div>
 
@@ -18,12 +18,11 @@
                 <main>
                     <div class="col-lg-8 mt-5">
                         {{-- enctype="multipart/form-data" untuk menambahkan fungsi upload file --}}
-                        <form method="post" action="/dashboard/news" class="mb-5" enctype="multipart/form-data">
+                        <form method="post" action="/dashboard/produk" class="mb-5" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                    id="title" name="title" autofocus required value="{{ old('title') }}">
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" autofocus required value="{{ old('title') }}">
                                 @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -31,28 +30,19 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="slug" class="form-label">Slug</label>
-                                <input type="text" class="form-control" id="slug" name="slug"
-                                    value="{{ old('slug') }}" readonly>
+                                <label for="member" class="form-label">Member</label>
+                                <input type="text" class="form-control" id="member" name="member" autofocus required value="{{ old('member') }}">
+                                @error('member')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
-                            </div>
-                            <div class="mb-3">
-                                <label for="category" class="form-label">Category</label>
-                                <select class="form-select" name="category_id">
-                                    @foreach ($categories as $category)
-                                        @if (old('category_id') == $category->id)
-                                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                                        @else
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label">Upload Image</label>
                                 <img class="img-preview img-fluid mb-3 col-sm-5">
-                                <input class="@error('image') is-invalid @enderror form-control" type="file"
-                                    id="image" name="image" onchange="previewImage()">
+                                <input class="@error('image') is-invalid @enderror form-control" type="file" id="image" name="image" onchange="previewImage()">
                                 @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -61,15 +51,14 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="body" class="form-label">Body</label>
-                                @error('body')
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                @error('deskripsi')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
-                                <input id="body" type="hidden" name="body" required>
-                                <trix-editor input="body"></trix-editor>
-
+                                <input id="deskripsi" type="hidden" name="deskripsi" required>
+                                <trix-editor input="deskripsi"></trix-editor>
                             </div>
-                            <button type="submit" class="btn btn-primary">Create News</button>
+                            <button type="submit" class="btn btn-primary">Create Projek</button>
                         </form>
                     </div>
                 </main>
@@ -77,13 +66,13 @@
         </header>
     </div>
     <script>
-        const title = document.querySelector('#title');
-        const slug = document.querySelector('#slug');
-        title.addEventListener('change', function() {
-            fetch('/dashboard/news/checkSlug?title=' + title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
+        // const title = document.querySelector('#title');
+        // const slug = document.querySelector('#slug');
+        // title.addEventListener('change', function() {
+        //     fetch('/dashboard/projek/checkSlug?title=' + title.value)
+        //         .then(response => response.json())
+        //         .then(data => slug.value = data.slug)
+        // });
 
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();

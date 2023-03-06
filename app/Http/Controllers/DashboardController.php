@@ -11,13 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $news = News::all();
-        $publikasi = Publikasi::all();
-        $user = User::all();
-        return view('dashboard.index', [
-            "total_News" => $news->count(),
-            "total_Publikasi" => $publikasi->count(),
-            "total_User" => $user->count()
-        ]);
+
+        return view('dashboard.index');
     }
 }

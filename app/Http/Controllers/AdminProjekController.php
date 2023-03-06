@@ -41,7 +41,10 @@ class AdminProjekController extends Controller
             'deskripsi' => 'required',
             'partner' => 'required',
             'budget' => 'required',
-            'kontak' => 'required'
+            'kontak' => 'required',
+            'member' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required'
         ]);
 
         if ($request->file('image')) {
@@ -50,29 +53,30 @@ class AdminProjekController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['slug'] = $slug;
         Projek::create($validatedData);
-        return redirect('/dashboard/projek')->with('success', 'projek has been added');
+        return redirect('/dashboard/projek')->with('success', 'Projek has been added');
     }
 
     public function edit(Projek $projek)
     {
         return view('dashboard.projek.edit', [
             'projek' => $projek,
-            'categories' => Category::all()
         ]);
     }
 
     public function update(Request $request, Projek $projek)
     {
+        $slug = SlugService::createSlug(Projek::class, 'slug', $request['title']);
         $rules = [
             'title' => 'required|max:255',
-            'category_id' => 'required',
             'image' => 'image|file|max:1024',
-            'body' => 'required',
+            'deskripsi' => 'required',
+            'partner' => 'required',
+            'budget' => 'required',
+            'kontak' => 'required',
+            'member' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
         ];
-
-        if ($request->slug != $projek->slug) {
-            $rules['slug'] = 'required|unique:projek';
-        }
 
         $validatedData = $request->validate($rules);
 
@@ -82,12 +86,10 @@ class AdminProjekController extends Controller
             }
             $validatedData['image'] = $request->file('image')->store('projek-image');
         }
-
+        $validatedData['slug'] = $slug;
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 200));
-        Projek::where('id', $projek->id)
-            ->update($validatedData);
-        return redirect('/dashboard/projek')->with('success', 'projek has been updated');
+        Projek::where('id', $projek->id)->update($validatedData);
+        return redirect('/dashboard/projek')->with('success', 'Projek has been updated');
     }
 
     public function destroy(Projek $projek)
@@ -96,6 +98,6 @@ class AdminProjekController extends Controller
             Storage::delete($projek->image); //untuk menghapus gambar yang lama ketika gambar di edit
         }
         Projek::destroy($projek->id);
-        return redirect('/dashboard/projek')->with('success', 'projek has been deleted!');
+        return redirect('/dashboard/projek')->with('success', 'Projek has been deleted!');
     }
 }

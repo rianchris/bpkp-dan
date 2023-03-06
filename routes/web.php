@@ -4,7 +4,8 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProjekController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -39,12 +40,14 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-
 Route::get('/publikasi', [PublikasiController::class, 'index']);
 Route::get('/publikasi/{publikasi:slug}', [PublikasiController::class, 'show']);
 
-Route::get('/projek', [PublikasiController::class, 'index']);
-Route::get('/produk', [PublikasiController::class, 'index']);
+Route::get('/projek', [ProjekController::class, 'index']);
+Route::get('/projek/{projek:slug}', [ProjekController::class, 'show']);
+
+Route::get('/produk', [ProdukController::class, 'index']);
+Route::get('/produk/{produk:slug}', [ProdukController::class, 'show']);
 
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{news:slug}', [NewsController::class, 'show']);
@@ -65,7 +68,6 @@ Route::get('/news/authors/{author:username}', function (User $author) {
 });
 
 Route::get('/dashboard',  [DashboardController::class, 'index'])->middleware('auth');
-
 
 Route::get('/dashboard/news/checkSlug', [DashboardNewsController::class, 'checkSlug'])->middleware('auth');
 Route::get('/dashboard/publikasi/checkSlug', [AdminPublikasiController::class, 'checkSlug'])->middleware('auth');

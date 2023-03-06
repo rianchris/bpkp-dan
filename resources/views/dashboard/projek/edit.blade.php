@@ -9,57 +9,70 @@
                         <div class="row align-items-center">
                             <div class="col-md-6 col-6 mb-3 mb-md-0">
                                 <!-- Title -->
-                                <h1 class="h2 mb-0 ls-tight">Edit News</h1>
+                                <h1 class="h2 mb-0 ls-tight">Edit Projek</h1>
                             </div>
                         </div>
                     </div>
                 </div>
                 <main>
                     <div class="col-lg-8 mt-5">
-                        <form method="post" action="/dashboard/news/{{ $news->slug }}" class="mb-5"
-                            enctype="multipart/form-data">
+                        <form method="post" action="/dashboard/projek/{{ $projek->slug }}" class="mb-5" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="text"
-                                    class="form-control @error('title') is-invalid @enderror"id="title" name="title"
-                                    accept="" value="{{ old('title') ?? $news->title }}" required>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" accept="" value="{{ old('title') ?? $projek->title }}" required>
                                 @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <label for="slug" class="form-label">Slug</label>
-                                <input type="text" class="form-control" id="slug" name="slug"
-                                    value="{{ old('slug') ?? $news->slug }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="category" class="form-label">Category</label>
-                                <select class="form-select" name="category_id">
-                                    @foreach ($categories as $category)
-                                        @if (old('category_id', $news->category_id) == $category->id)
-                                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                                        @else
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
 
                             <div class="mb-3">
+                                <label for="member" class="form-label">Member</label>
+                                <input type="text" class="form-control" id="member" name="member" required value="{{ old('member') ?? $projek->member }}">
+                                @error('member')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="budget" class="form-label">Budget</label>
+                                <input type="number" step="100" class="form-control" id="budget" name="budget" required value="{{ old('budget') ?? $projek->budget }}">
+                                @error('budget')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="kontak" class="form-label">Kontak WA</label>
+                                <input type="number" class="form-control" id="kontak" name="kontak" required value="{{ old('kontak') ?? $projek->kontak }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="partner" class="form-label">Partner</label>
+                                <input type="text" class="form-control" id="partner" name="partner" required value="{{ old('partner') ?? $projek->partner }}">
+                            </div>
+
+                            <div class="mb-3 bg-gray-300 py-2 px-3 rounded-2">
+                                <label for="start" class="form-label">Tanggal Mulai : </label>
+                                <input type="date" class="rounded-1 px-2" id="start" name="tanggal_mulai" value="{{ old('tanggal_mulai') ?? date('Y-m-d', strtotime($projek->tanggal_mulai)) }}" min="2020-12-31" max="2030-12-31">
+                            </div>
+                            <div class="mb-3 bg-gray-300 py-2 px-3 rounded-2">
+                                <label for="start" class=form-label>Tanggal Selesai : </label>
+                                <input type="date" class="rounded-1 px-2" id="start" name="tanggal_selesai" value="{{ old('tanggal_selesai') ?? date('Y-m-d', strtotime($projek->tanggal_selesai)) }}" min="2020-12-31" max="2030-12-31">
+                            </div>
+                            <div class="mb-3">
                                 <label for="image" class="form-label">Upload Image</label>
-                                <input type="hidden" name="oldImage" value={{ $news->image }}>
-                                @if ($news->image)
-                                    <img src="{{ asset('storage/' . $news->image) }}"
-                                        class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                <input type="hidden" name="oldImage" value={{ $projek->image }}>
+                                @if ($projek->image)
+                                    <img src="{{ asset('storage/' . $projek->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
                                 @else
                                     <img class="img-preview img-fluid mb-3 col-sm-5">
                                 @endif
-                                <input class="@error('image') is-invalid @enderror form-control" type="file"
-                                    id="image" name="image" onchange="previewImage()">
+                                <input class="@error('image') is-invalid @enderror form-control" type="file" id="image" name="image" onchange="previewImage()">
                                 @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -67,16 +80,15 @@
                                 @enderror
                             </div>
 
-
                             <div class="mb-3">
-                                <label for="body" class="form-label">Body</label>
-                                @error('body')
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                @error('deskripsi')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
-                                <input id="body" type="hidden" name="body" value="{{ old('body', $news->body) }}">
-                                <trix-editor input="body"></trix-editor>
+                                <input id="deskripsi" type="hidden" name="deskripsi" value="{{ old('deskripsi') ?? $projek->deskripsi }}">
+                                <trix-editor input="deskripsi"></trix-editor>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update News</button>
+                            <button type="submit" class="btn btn-primary">Update Projek</button>
                         </form>
                     </div>
                 </main>
@@ -84,14 +96,6 @@
         </header>
     </div>
     <script>
-        const title = document.querySelector('#title');
-        const slug = document.querySelector('#slug');
-        title.addEventListener('change', function() {
-            fetch('/dashboard/news/checkSlug?title=' + title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
-
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();
         })

@@ -92,8 +92,7 @@ class DashboardNewsController extends Controller
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 200));
-        News::where('id', $news->id)
-            ->update($validatedData);
+        News::where('id', $news->id)->update($validatedData);
         return redirect('/dashboard/news')->with('success', 'News has been updated');
     }
 
